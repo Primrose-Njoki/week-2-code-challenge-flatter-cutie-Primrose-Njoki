@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Define an array of character objects with the GIF details.
+    
     const characters = [
       {
         id: 1,
@@ -33,10 +33,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     ];
   
-    // Keep track of the currently selected character. Defaults to the first one.
+    
     let currentCharacter = characters[0];
   
-    // Get references to the DOM elements.
+  
     const characterBar = document.getElementById("character-bar");
     const nameEl = document.getElementById("name");
     const imageEl = document.getElementById("image");
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const votesInput = document.getElementById("votes");
     const resetBtn = document.getElementById("reset-btn");
   
-    // Update the character detail area with the given character's data
+    
     function displayCharacter(character) {
       currentCharacter = character;
       nameEl.innerText = character.name;
@@ -53,17 +53,17 @@ document.addEventListener("DOMContentLoaded", () => {
       voteCountEl.innerText = character.votes;
     }
   
-    // Dynamically render the character bar list.
+
     function renderCharacterBar() {
-      // Clear any existing items
+      
       characterBar.innerHTML = "";
-      // Create a span element for each character
+      
       characters.forEach(character => {
         const charSpan = document.createElement("span");
         charSpan.innerText = character.name;
         charSpan.style.cursor = "pointer";
         charSpan.style.marginRight = "15px";
-        // When the character is clicked, update the detail view.
+        
         charSpan.addEventListener("click", () => {
           displayCharacter(character);
         });
@@ -71,14 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   
-    // Render the character bar and show the default character details on page load.
+    
     renderCharacterBar();
     displayCharacter(currentCharacter);
   
-    // Add votes based on the form submission.
+
     votesForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      // Convert the input text to a number.
+      
       const voteValue = parseInt(votesInput.value);
       if (!isNaN(voteValue)) {
         currentCharacter.votes += voteValue;
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
       votesForm.reset();
     });
   
-    // Reset the vote count for the current character.
+    
     resetBtn.addEventListener("click", () => {
       currentCharacter.votes = 0;
       voteCountEl.innerText = currentCharacter.votes;
