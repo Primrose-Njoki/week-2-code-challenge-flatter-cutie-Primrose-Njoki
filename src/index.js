@@ -44,6 +44,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const votesForm = document.getElementById("votes-form");
     const votesInput = document.getElementById("votes");
     const resetBtn = document.getElementById("reset-btn");
+
+    function fetchCharacters() {
+      fetch("https://phase-1-project-back-end.vercel.app/characters") 
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.json();
+          })
+          .then(data => {
+              characters = data; 
+              renderCharacterBar();
+              if (characters.length > 0) {
+                  displayCharacter(characters[0]);
+              }
+          })
+          .catch(error => console.error("Error fetching characters:", error));
+  
+  }
+
   
     
     function displayCharacter(character) {
@@ -86,6 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       votesForm.reset();
     });
+
+
   
     
     resetBtn.addEventListener("click", () => {
